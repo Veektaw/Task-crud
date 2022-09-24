@@ -1,0 +1,77 @@
+This is a basic CRUD app i am having issues staging on Heroku. Here is the log from Heroku for you to check out. **The first line** is where the issues seems to be
+
+
+2022-09-23T14:06:43.470367+00:00 heroku[router]: at=info method=GET path="/" host=taskingcrud.herokuapp.com request_id=f975548d-a245-4e85-8e4f-bb82f416ead6 fwd="197.210.77.123" dyno=web.1 connect=0ms service=16ms status=500 bytes=438 protocol=https
+2022-09-23T14:06:43.470916+00:00 app[web.1]: 10.1.31.131 - - [23/Sep/2022:14:06:43 +0000] "GET / HTTP/1.1" 500 265 "https://dashboard.heroku.com/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+2022-09-23T14:39:34.725397+00:00 heroku[web.1]: Idling
+2022-09-23T14:39:34.729536+00:00 heroku[web.1]: State changed from up to down
+2022-09-23T14:39:35.385410+00:00 heroku[web.1]: Stopping all processes with SIGTERM
+2022-09-23T14:39:35.529040+00:00 app[web.1]: [2022-09-23 14:39:35 +0000] [10] [INFO] Worker exiting (pid: 10)
+2022-09-23T14:39:35.529048+00:00 app[web.1]: [2022-09-23 14:39:35 +0000] [9] [INFO] Worker exiting (pid: 9)
+2022-09-23T14:39:35.529048+00:00 app[web.1]: [2022-09-23 14:39:35 +0000] [4] [INFO] Handling signal: term
+2022-09-23T14:39:35.728756+00:00 app[web.1]: [2022-09-23 14:39:35 +0000] [4] [INFO] Shutting down: Master
+2022-09-23T14:39:35.868730+00:00 heroku[web.1]: Process exited with status 0
+2022-09-23T16:44:13.982954+00:00 heroku[web.1]: Unidling
+2022-09-23T16:44:13.987459+00:00 heroku[web.1]: State changed from down to starting
+2022-09-23T16:44:15.582452+00:00 heroku[web.1]: Starting process with command `gunicorn app:app`
+2022-09-23T16:44:16.576000+00:00 app[web.1]: [2022-09-23 16:44:16 +0000] [4] [INFO] Starting gunicorn 20.1.0
+2022-09-23T16:44:16.576343+00:00 app[web.1]: [2022-09-23 16:44:16 +0000] [4] [INFO] Listening at: http://0.0.0.0:35182 (4)
+2022-09-23T16:44:16.576391+00:00 app[web.1]: [2022-09-23 16:44:16 +0000] [4] [INFO] Using worker: sync
+2022-09-23T16:44:16.582137+00:00 app[web.1]: [2022-09-23 16:44:16 +0000] [9] [INFO] Booting worker with pid: 9
+2022-09-23T16:44:16.592908+00:00 app[web.1]: [2022-09-23 16:44:16 +0000] [10] [INFO] Booting worker with pid: 10
+2022-09-23T16:44:16.835568+00:00 app[web.1]: /app/.heroku/python/lib/python3.10/site-packages/flask_sqlalchemy/__init__.py:872: FSADeprecationWarning: SQLALCHEMY_TRACK_MODIFICATIONS adds significant overhead and will be disabled by default in the future.  Set it to True or False to suppress this warning.
+2022-09-23T16:44:16.835584+00:00 app[web.1]:   warnings.warn(FSADeprecationWarning(
+2022-09-23T16:44:16.840976+00:00 app[web.1]: /app/.heroku/python/lib/python3.10/site-packages/flask_sqlalchemy/__init__.py:872: FSADeprecationWarning: SQLALCHEMY_TRACK_MODIFICATIONS adds significant overhead and will be disabled by default in the future.  Set it to True or False to suppress this warning.
+2022-09-23T16:44:16.840978+00:00 app[web.1]:   warnings.warn(FSADeprecationWarning(
+2022-09-23T16:44:17.297242+00:00 heroku[web.1]: State changed from starting to up
+2022-09-23T16:44:18.051934+00:00 heroku[router]: at=info method=GET path="/" host=taskingcrud.herokuapp.com request_id=a9f8e75e-26ee-4624-8909-5a77a004b42f fwd="197.211.58.187" dyno=web.1 connect=0ms service=15ms status=500 bytes=438 protocol=https
+2022-09-23T16:44:18.048676+00:00 app[web.1]: [2022-09-23 16:44:18,045] ERROR in app: Exception on / [GET]
+2022-09-23T16:44:18.048692+00:00 app[web.1]: Traceback (most recent call last):
+2022-09-23T16:44:18.048706+00:00 app[web.1]:   File "/app/.heroku/python/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1900, in _execute_context
+2022-09-23T16:44:18.048707+00:00 app[web.1]:     self.dialect.do_execute(
+2022-09-23T16:44:18.048710+00:00 app[web.1]:   File "/app/.heroku/python/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+2022-09-23T16:44:18.048710+00:00 app[web.1]:     cursor.execute(statement, parameters)
+2022-09-23T16:44:18.048710+00:00 app[web.1]: sqlite3.OperationalError: no such table: todo
+2022-09-23T16:44:18.048711+00:00 app[web.1]: 
+2022-09-23T16:44:18.048714+00:00 app[web.1]: The above exception was the direct cause of the following exception:
+2022-09-23T16:44:18.048714+00:00 app[web.1]: 
+2022-09-23T16:44:18.048714+00:00 app[web.1]: Traceback (most recent call last):
+2022-09-23T16:44:18.048715+00:00 app[web.1]:   File "/app/.heroku/python/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+2022-09-23T16:44:18.048715+00:00 app[web.1]:     response = self.full_dispatch_request()
+2022-09-23T16:44:18.048716+00:00 app[web.1]:   File "/app/.heroku/python/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+2022-09-23T16:44:18.048716+00:00 app[web.1]:     rv = self.handle_user_exception(e)
+2022-09-23T16:44:18.048716+00:00 app[web.1]:   File "/app/.heroku/python/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+2022-09-23T16:44:18.048716+00:00 app[web.1]:     rv = self.dispatch_request()
+2022-09-23T16:44:18.048717+00:00 app[web.1]:   File "/app/.heroku/python/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+2022-09-23T16:44:18.048717+00:00 app[web.1]:     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+2022-09-23T16:44:18.048717+00:00 app[web.1]:   File "/app/app.py", line 41, in index
+2022-09-23T16:44:18.048718+00:00 app[web.1]:     tasks = Todo.query.order_by(Todo.date_created).all()
+2022-09-23T16:44:18.048718+00:00 app[web.1]:   File "/app/.heroku/python/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2772, in all
+2022-09-23T16:44:18.048718+00:00 app[web.1]:     return self._iter().all()
+2022-09-23T16:44:18.048719+00:00 app[web.1]:   File "/app/.heroku/python/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2907, in _iter
+2022-09-23T16:44:18.048719+00:00 app[web.1]:     result = self.session.execute(
+2022-09-23T16:44:18.048719+00:00 app[web.1]:   File "/app/.heroku/python/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1712, in execute
+2022-09-23T16:44:18.048719+00:00 app[web.1]:     result = conn._execute_20(statement, params or {}, execution_options)
+2022-09-23T16:44:18.048720+00:00 app[web.1]:   File "/app/.heroku/python/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1705, in _execute_20
+2022-09-23T16:44:18.048720+00:00 app[web.1]:     return meth(self, args_10style, kwargs_10style, execution_options)
+2022-09-23T16:44:18.048720+00:00 app[web.1]:   File "/app/.heroku/python/lib/python3.10/site-packages/sqlalchemy/sql/elements.py", line 333, in _execute_on_connection
+2022-09-23T16:44:18.048720+00:00 app[web.1]:     return connection._execute_clauseelement(
+2022-09-23T16:44:18.048720+00:00 app[web.1]:   File "/app/.heroku/python/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1572, in _execute_clauseelement
+2022-09-23T16:44:18.048721+00:00 app[web.1]:     ret = self._execute_context(
+2022-09-23T16:44:18.048721+00:00 app[web.1]:   File "/app/.heroku/python/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1943, in _execute_context
+2022-09-23T16:44:18.048721+00:00 app[web.1]:     self._handle_dbapi_exception(
+2022-09-23T16:44:18.048721+00:00 app[web.1]:   File "/app/.heroku/python/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2124, in _handle_dbapi_exception
+2022-09-23T16:44:18.048722+00:00 app[web.1]:     util.raise_(
+2022-09-23T16:44:18.048722+00:00 app[web.1]:   File "/app/.heroku/python/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 208, in raise_
+2022-09-23T16:44:18.048722+00:00 app[web.1]:     raise exception
+2022-09-23T16:44:18.048723+00:00 app[web.1]:   File "/app/.heroku/python/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1900, in _execute_context
+2022-09-23T16:44:18.048723+00:00 app[web.1]:     self.dialect.do_execute(
+2022-09-23T16:44:18.048723+00:00 app[web.1]:   File "/app/.heroku/python/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+2022-09-23T16:44:18.048724+00:00 app[web.1]:     cursor.execute(statement, parameters)
+2022-09-23T16:44:18.048724+00:00 app[web.1]: sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: todo
+2022-09-23T16:44:18.048724+00:00 app[web.1]: [SQL: SELECT todo.id AS todo_id, todo.content AS todo_content, todo.date_created AS todo_date_created 
+2022-09-23T16:44:18.048724+00:00 app[web.1]: FROM todo ORDER BY todo.date_created]
+2022-09-23T16:44:18.048725+00:00 app[web.1]: (Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-09-23T16:44:18.049452+00:00 app[web.1]: 10.1.47.122 - - [23/Sep/2022:16:44:18 +0000] "GET / HTTP/1.1" 500 265 "https://dashboard.heroku.com/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+2022-09-23T16:44:18.571880+00:00 heroku[router]: at=info method=GET path="/favicon.ico" host=taskingcrud.herokuapp.com request_id=b343460b-3f89-4def-a719-8879043dec49 fwd="197.211.58.187" dyno=web.1 connect=0ms service=1ms status=404 bytes=368 protocol=https
+2022-09-23T16:44:18.569573+00:00 app[web.1]: 10.1.47.122 - - [23/Sep/2022:16:44:18 +0000] "GET /favicon.ico HTTP/1.1" 404 207 "https://taskingcrud.herokuapp.com/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
